@@ -1,0 +1,272 @@
+:root {
+  --accent: #56a2e8;
+  --bg-deep: #0b0e12;
+  --vintage-cream: #efe8dd;
+  --muted: rgba(230, 237, 243, 0.62);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg-deep);
+  color: var(--vintage-cream);
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Confetti background using CSS particles */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+      circle at 30% 20%,
+      rgba(86, 162, 232, 0.05),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(255, 255, 255, 0.04),
+      transparent 40%
+    );
+  background-repeat: no-repeat;
+  animation: moveConfetti 12s linear infinite alternate;
+  z-index: 0;
+}
+
+@keyframes moveConfetti {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-20px, 20px);
+  }
+}
+
+.split {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  padding: 4rem;
+}
+
+.left {
+  max-width: 600px;
+}
+
+.logo-img {
+  height: 100px;
+  width: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+  animation: float 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(86, 162, 232, 0.15));
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.headline {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: #f4f8fb;
+  line-height: 1.2;
+}
+
+.tag {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 45ch;
+}
+
+.coming {
+  margin-top: 1rem;
+  font-family: "Merriweather", serif;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.form-row {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--vintage-cream);
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  min-width: 240px;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.cta {
+  background: linear-gradient(180deg, var(--accent), #3e8dcf);
+  color: #041022;
+  font-weight: 700;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(86, 162, 232, 0.2);
+}
+
+.micro {
+  margin-top: 1.5rem;
+  color: rgba(230, 237, 243, 0.45);
+  font-size: 0.9rem;
+}
+
+.right {
+  max-width: 420px;
+  position: relative;
+}
+
+.ghost {
+  width: 100%;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(230, 237, 243, 0.2);
+  font-family: monospace;
+  font-size: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.socials {
+  position: fixed;
+  right: 20px;
+  bottom: 16px;
+  display: flex;
+  gap: 14px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.socials a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.socials a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 880px) {
+  .split {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+  .right {
+    margin-top: 2rem;
+  }
+  .form-row {
+    justify-content: center;
+  }
+}
+
+/* right-side - vintage ghost visuals & grain */
+.ghost-wrap {
+  width: 100%;
+  max-width: 680px;
+  height: 60vh;
+  border-radius: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.007)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 14px 60px rgba(2, 6, 23, 0.6);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+}
+
+/* subtle film grain overlay inside ghost */
+.ghost-wrap::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/old-paper.png");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* faded paper sheet svg styling */
+.paper {
+  width: 70%;
+  max-width: 420px;
+  opacity: 0.92;
+  filter: drop-shadow(0 18px 60px rgba(2, 6, 23, 0.6));
+  transform: rotate(-2deg);
+  transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+/* small blinking cursor line for "building" effect */
+.console {
+  position: absolute;
+  left: 10%;
+  bottom: 18%;
+  color: rgba(230, 237, 243, 0.22);
+  font-family: monospace;
+  font-size: 13px;
+  opacity: 0.95;
+}
+.blink {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--vintage-cream);
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: blink 1s steps(2, end) infinite;
+  opacity: 0.9;
+}
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}

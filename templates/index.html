@@ -1,0 +1,124 @@
+{# templates/index.html #}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>skippit: Skip the calls, not the hires.</title>
+    <link rel="stylesheet" href="static\css\styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="split">
+      <div class="left">
+        <img
+          src="{{ url_for('static', filename='img/nobg_logo.png') }}"
+          alt="skippit-logo"
+          class="logo-img"
+        />
+        <div class="headline">Skip the calls, not the hires.</div>
+        <div class="tag">
+          I wanted to make something that shifts the hiring industry to a better
+          place — tiny, human improvements that add up.
+        </div>
+        <div class="coming">coming soon.</div>
+
+        <form action="{{ url_for('join') }}" method="post" class="form-row">
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder="your email (no spam)"
+            class="input"
+          />
+          <button class="cta" type="submit">Join waitlist →</button>
+        </form>
+
+        {% if success %}
+        <div class="micro" style="color: #bce6c8">{{ success }}</div>
+        {% endif %}
+
+        <div class="micro">
+          built by vidha — quietly building something useful.
+        </div>
+      </div>
+
+      <!-- RIGHT — VISUAL / GHOST -->
+      <div class="right">
+        <div class="ghost-wrap" aria-hidden="true">
+          <!-- paper-like SVG (faded resume / notes) -->
+          <svg
+            class="paper"
+            viewBox="0 0 420 300"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="vintage paper"
+          >
+            <rect
+              x="6"
+              y="6"
+              width="408"
+              height="288"
+              rx="8"
+              fill="rgba(230,237,243,0.02)"
+              stroke="rgba(255,255,255,0.02)"
+            />
+            <g
+              transform="translate(18,18)"
+              stroke="rgba(230,237,243,0.07)"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            >
+              <!-- header lines -->
+              <rect
+                x="0"
+                y="0"
+                width="220"
+                height="18"
+                rx="2"
+                fill="rgba(86,162,232,0.03)"
+              />
+              <path d="M0 36h360" />
+              <path d="M0 54h360" />
+              <path d="M0 78h360" />
+              <path d="M0 102h360" />
+              <path d="M0 126h360" />
+              <path d="M0 150h360" />
+              <!-- small doodle boxes -->
+              <rect
+                x="0"
+                y="174"
+                width="56"
+                height="30"
+                rx="4"
+                fill="rgba(86,162,232,0.02)"
+              />
+              <rect x="68" y="174" width="240" height="30" rx="4" />
+              <path d="M0 212h320" />
+              <path d="M0 236h280" />
+              <path d="M0 260h200" />
+            </g>
+          </svg>
+
+          <!-- faint console / cursor (building feel) -->
+          <div class="console" aria-hidden="true">
+            building skippit<span class="blink"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="socials">
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+      <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+      <a href="https://github.com/yourhandle" target="_blank">GitHub</a>
+    </div>
+
+    <script src="static\js\script.js"></script>
+  </body>
+</html>
