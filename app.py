@@ -31,6 +31,10 @@ def join():
 
     return render_template('index.html', success=msg)
 
+@app.route("/ping")
+def ping():
+    return "im alive!"
+
 if __name__ == '__main__':
     init_db()  # ensures the table exists
     app.run(debug=True)
