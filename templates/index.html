@@ -4,8 +4,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>skippit: Skip the calls, not the hires.</title>
+    <title>skip it.</title>
     <link rel="stylesheet" href="static\css\styles.css" />
+    <link rel="icon" href="static\img\nobg_logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -15,17 +16,22 @@
   <body>
     <div class="split">
       <div class="left">
-        <img
-          src="{{ url_for('static', filename='img/nobg_logo.png') }}"
-          alt="skippit-logo"
-          class="logo-img"
-        />
+        <div class="logo-container">
+          <img
+            src="{{ url_for('static', filename='img/nobg_logo.png') }}"
+            alt="skippit-logo"
+            class="logo-img"
+          />
+          <div class="whisper" id="whisper">
+            in the making with sleepless nights ☕
+          </div>
+        </div>
         <div class="headline">Skip the calls, not the hires.</div>
         <div class="tag">
-          I wanted to make something that shifts the hiring industry to a better
-          place — tiny, human improvements that add up.
+          you set the questions -> candidates take it from there -> everything
+          the call would tell you, delivered.
         </div>
-        <div class="coming">coming soon.</div>
+        <div class="coming">let Skippit handle the interviews.</div>
 
         <form action="{{ url_for('join') }}" method="post" class="form-row">
           <input
@@ -43,15 +49,21 @@
         {% endif %}
 
         <div class="micro">
-          built by vidha — quietly building something useful.
+          here's more about skippit ->
+          <a
+            class="notion"
+            href="https://www.notion.so/you-hate-hiring-and-i-did-something-about-it-22821aae817a80c5b5b2cf84e017c05c?source=copy_link"
+            target="_blank"
+            >open notion</a
+          >
         </div>
       </div>
 
       <!-- RIGHT — VISUAL / GHOST -->
       <div class="right">
-        <div class="ghost-wrap" aria-hidden="true">
-          <!-- paper-like SVG (faded resume / notes) -->
-          <svg
+        <!-- <div class="ghost-wrap" aria-hidden="true"> -->
+        <!-- paper-like SVG (faded resume / notes) -->
+        <!-- <svg
             class="paper"
             viewBox="0 0 420 300"
             fill="none"
@@ -74,8 +86,8 @@
               stroke-width="1.6"
               stroke-linecap="round"
             >
-              <!-- header lines -->
-              <rect
+              <-- header lines -->
+        <!-- <rect
                 x="0"
                 y="0"
                 width="220"
@@ -89,8 +101,8 @@
               <path d="M0 102h360" />
               <path d="M0 126h360" />
               <path d="M0 150h360" />
-              <!-- small doodle boxes -->
-              <rect
+              <-- small doodle boxes -->
+        <!-- <rect
                 x="0"
                 y="174"
                 width="56"
@@ -103,22 +115,31 @@
               <path d="M0 236h280" />
               <path d="M0 260h200" />
             </g>
-          </svg>
+          </svg> -->
+        <img
+          src="{{ url_for('static', filename='img/rightd-nobg.png') }}"
+          alt="faded
+          paper"
+          class="paper"
+        />
 
-          <!-- faint console / cursor (building feel) -->
-          <div class="console" aria-hidden="true">
-            building skippit<span class="blink"></span>
-          </div>
+        <!-- faint console / cursor (building feel) -->
+        <div class="console" aria-hidden="true">
+          coming soon...<span class="blink"></span>
         </div>
+        <!-- </div> -->
       </div>
     </div>
 
     <div class="socials">
-      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+      <!-- <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
       <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
-      <a href="https://github.com/yourhandle" target="_blank">GitHub</a>
+      <a href="https://github.com/yourhandle" target="_blank">GitHub</a> -->
+      <a href="mailto:works.vidha@gmail.com" target="_blank"
+        >reach out to the founder →</a
+      >
     </div>
 
-    <script src="static\js\script.js"></script>
+    <script src="static/js/script.js"></script>
   </body>
 </html>
