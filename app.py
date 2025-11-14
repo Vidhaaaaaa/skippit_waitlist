@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import sqlite3
 import os
 
 from createdb import DB_PATH, init_db
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder="frontend/templates", static_folder="frontend/static")
 
 @app.route("/")
 def index():
@@ -31,7 +31,14 @@ def join():
 
     return render_template('index.html', success=msg)
 
-@app.route("/ping")
+# @app.route('/favicon.ico')
+# def favicon():
+#     return send_from_directory(
+#         os.path.join(app.static_folder, 'img'),
+#         'favicon.png'
+#     )
+
+@app.route("/ping") # ping for render - every 10 mins
 def ping():
     return "im alive!"
 
