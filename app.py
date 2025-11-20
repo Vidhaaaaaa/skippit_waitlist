@@ -40,7 +40,7 @@ def join():
 
 @app.route("/ping") # ping for render - every 10 mins
 def ping():
-    return "im alive!"
+    return "pong"
 
 if __name__ == '__main__':
     init_db()  # ensures the table exists
