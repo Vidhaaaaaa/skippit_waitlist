@@ -709,3 +709,10 @@ body::after {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
+
+
+/* fix page */
+
+.fix {
+  text-align: center;
+}

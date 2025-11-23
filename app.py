@@ -6,9 +6,13 @@ from createdb import DB_PATH, init_db
 
 app = Flask(__name__,template_folder="frontend/templates", static_folder="frontend/static")
 
+# @app.route("/")
+# def index():
+#     return render_template("index.html")
+
 @app.route("/")
-def index():
-    return render_template("index.html")
+def fixing():
+    return render_template("fixing.html")
 
 @app.route("/join", methods=["POST"])
 def join():
