@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, send_from_directory
+import requests
 import sqlite3
 import os
 
 from createdb import DB_PATH, init_db
+
+GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbyd92Xb3gxKGpte39OwAYeQ6bjWNfwnRtDlUbVlFgmb8q3J1e4MVmsx_CI0u27Pe1PXmw/exec"
 
 app = Flask(__name__,template_folder="frontend/templates", static_folder="frontend/static")
 
@@ -14,26 +17,52 @@ app = Flask(__name__,template_folder="frontend/templates", static_folder="fronte
 def fixing():
     return render_template("fixing.html")
 
+# @app.route("/join", methods=["POST"])
+# def join():
+#     email = request.form.get('email')
+
+#     if not email:
+#         return render_template('index.html', success="Please enter a valid email.")
+
+#     conn = sqlite3.connect(DB_PATH)
+#     c = conn.cursor()
+
+#     try:
+#         c.execute("INSERT INTO waitlist (email) VALUES (?)", (email,))
+#         conn.commit()
+#         msg = "You’re in the waitlist 🕊️"
+#     except sqlite3.IntegrityError:
+#         msg = "You’re already on the list!"
+#     finally:
+#         conn.close()
+
+#     return render_template('index.html', success=msg)
+
 @app.route("/join", methods=["POST"])
 def join():
-    email = request.form.get('email')
+    email = request.form.get("email")
 
     if not email:
-        return render_template('index.html', success="Please enter a valid email.")
-
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
+        return render_template("index.html", success="Please enter a valid email.")
 
     try:
-        c.execute("INSERT INTO waitlist (email) VALUES (?)", (email,))
-        conn.commit()
-        msg = "You’re in the waitlist 🕊️"
-    except sqlite3.IntegrityError:
-        msg = "You’re already on the list!"
-    finally:
-        conn.close()
+        response = requests.post(
+            GOOGLE_SHEET_WEBHOOK,
+            json={"email": email},
+            timeout=5
+        )
 
-    return render_template('index.html', success=msg)
+        if response.status_code != 200:
+            raise Exception("Failed to save email")
+
+        return render_template("index.html", success="You’re in the waitlist 🕊️")
+
+    except Exception as e:
+        print("Error:", e)
+        return render_template(
+            "index.html",
+            success="Something went wrong. Please try again."
+        )
 
 # @app.route('/favicon.ico')
 # def favicon():
