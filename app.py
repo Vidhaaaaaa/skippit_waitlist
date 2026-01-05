@@ -15,7 +15,7 @@ app = Flask(__name__,template_folder="frontend/templates", static_folder="fronte
 
 @app.route("/")
 def fixing():
-    return render_template("fixing.html")
+    return render_template("index.html")
 
 # @app.route("/join", methods=["POST"])
 # def join():
